@@ -36,8 +36,6 @@ install: all
 	chmod +x /home/${SUDO_USER}/.config/polybar/launch.sh
 	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/dwm-tags.sh
 	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/wallz/wallz.py
-	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/weather/main.py
-	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/weather/weather.sh
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	install -Dm755 scripts/* ${DESTDIR}${PREFIX}/bin/
 
