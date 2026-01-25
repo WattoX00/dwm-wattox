@@ -10,7 +10,7 @@
 This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [suckless.org](https://dwm.suckless.org/) dwm window manager but includes a number of patches and customizations to make it more user friendly and functional out of the box.
 
 ## 📋 Install
-This guide assumes your system has the latest updates before going ahead with the installation on a Arch Linux based system.
+This guide assumes your system has the latest updates before going ahead with the installation on a Arch Linux based system
 
 1. Launch Linutil Project with the command:
     ```bash
