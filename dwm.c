@@ -2733,13 +2733,13 @@ setup(void)
 	xatom[Xembed] = XInternAtom(dpy, "_XEMBED", False);
 	xatom[XembedInfo] = XInternAtom(dpy, "_XEMBED_INFO", False);
 	/* init cursors */
-	cursor[CurNormal] = drw_cur_create(drw, XC_left_ptr);
-	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
-	cursor[CurResizeBR] = drw_cur_create(drw, XC_bottom_right_corner);
-	cursor[CurResizeBL] = drw_cur_create(drw, XC_bottom_left_corner);
-	cursor[CurResizeTR] = drw_cur_create(drw, XC_top_right_corner);
-	cursor[CurResizeTL] = drw_cur_create(drw, XC_top_left_corner);
-	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
+	cursor[CurNormal]   = drw_cur_create(drw, "left_ptr");
+	cursor[CurResize]   = drw_cur_create(drw, "sizing");
+	cursor[CurResizeBR] = drw_cur_create(drw, "bottom_right_corner");
+	cursor[CurResizeBL] = drw_cur_create(drw, "bottom_left_corner");
+	cursor[CurResizeTR] = drw_cur_create(drw, "top_right_corner");
+	cursor[CurResizeTL] = drw_cur_create(drw, "top_left_corner");
+	cursor[CurMove]     = drw_cur_create(drw, "fleur");
 	/* init appearance */
 	scheme = ecalloc(LENGTH(colors), sizeof(Clr *));
 	for (i = 0; i < LENGTH(colors); i++)

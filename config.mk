@@ -7,8 +7,11 @@ VERSION = 0.4
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+X11INC = /usr/include
+X11LIB = /usr/lib
+
+XCURSORINC = -I/usr/include/X11/Xcursor
+XCURSORLIB = -lXcursor
 
 # Xinerama, comment if you don't want it
 XINERAMALIBS  = -lXinerama
@@ -21,8 +24,8 @@ FREETYPEINC = /usr/include/freetype2
 #FREETYPEINC = ${X11INC}/freetype2
 
 # includes and libs
-INCS = -I${X11INC} -I${FREETYPEINC}
-LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} -lXrender -lImlib2 -lX11-xcb -lxcb -lxcb-res ${KVMLIB}
+INCS = -I${X11INC} -I${FREETYPEINC} ${XCURSORINC}
+LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS} -lXrender -lImlib2 -lX11-xcb -lxcb -lxcb-res ${KVMLIB} ${XCURSORLIB}
 
 # Optional compiler optimisations may create smaller binaries and
 # faster code, but increases compile time.
