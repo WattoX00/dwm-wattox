@@ -1,6 +1,5 @@
-My modified dwm
+# My modified dwm
 
----
 This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm-titus](https://github.com/ChrisTitusTech/dwm-titus) dwm window manager just fine tuned for my preferances.
 
 ## Installation
