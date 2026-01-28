@@ -90,6 +90,8 @@ static const Layout layouts[] = {
 /* commands */
 static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
+static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
+static const char *todomd[]    = { "alacritty", "-e", "todol", NULL };
 /* Web app commands using xdg-open */
 static const char *chatgptcmd[]   = { "webapp-launch", "https://chatgpt.com", NULL };
 
@@ -98,6 +100,8 @@ static Key keys[] = {
     { MODKEY,                       XK_r,                      spawn,          {.v = launchercmd} },
     { MODKEY|ControlMask,           XK_r,                      spawn,          SHCMD ("protonrestart")},
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
+    { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
+    { MODKEY,                       XK_n,                      spawn,          {.v = todomd } },
     { MODKEY,                       XK_a,                      spawn,          {.v = chatgptcmd } },
     { MODKEY,                       XK_b,                      spawn,          SHCMD ("xdg-open https://")},
     { MODKEY,                       XK_p,                      spawn,          SHCMD ("flameshot full -p /media/drive/Screenshots/")},
