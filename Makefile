@@ -31,6 +31,8 @@ install: all
 	mkdir -p /usr/share/xsessions/
 	test -f /usr/share/xsessions/dwm.desktop || install -Dm644 dwm.desktop /usr/share/xsessions/
 	test -f /home/${SUDO_USER}/.xinitrc || install -Dm644 .xinitrc /home/${SUDO_USER}/.xinitrc
+	test -f /home/${SUDO_USER}/.Xresources || install -Dm644 .Xresources /home/${SUDO_USER}/.Xresources
+	su - ${SUDO_USER} -c "xrdb -merge ~/.Xresources"
 	mkdir -p /home/${SUDO_USER}/.config/polybar
 	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
 	chmod +x /home/${SUDO_USER}/.config/polybar/launch.sh
@@ -49,8 +51,9 @@ release: dwm
 	cp -f dwm release/
 	cp -f dwm.desktop release/
 	cp -f .xinitrc release/
+	cp -f .Xresources release/
 	cp -rf polybar release/
 	cp -rf scripts release/
-	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm dwm.desktop .xinitrc polybar scripts
+	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm dwm.desktop .xinitrc .Xresources polybar scripts
 
 .PHONY: all clean install uninstall release
