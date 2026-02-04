@@ -37,7 +37,6 @@ install: all
 	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
 	chmod +x /home/${SUDO_USER}/.config/polybar/launch.sh
 	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/dwm-tags.sh
-	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/wallz/wallz.py
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	install -Dm755 scripts/* ${DESTDIR}${PREFIX}/bin/
 
