@@ -1,54 +1,49 @@
 * {
-    background: #0E1B1F;
-    foreground: #E6E1CF;
-    border-color: @background;
-
-    bg-selected: #14262C;
-    grey: #7FA6A0;
-
-    spacing: 2;
-    width: 30em;
-    margin: 0;
-    padding: 0;
+    bg:       #11181B;
+    bg-alt:   #1A2428;
+    fg:       #E6ECEA;
+    fg-muted: #8FA6A0;
+    accent:   #EBCB8B;
+    border-radius: 14px;
+    spacing: 10;
 }
 
 #window {
-    background-color: @background;
-    border: 0;
-    padding: 0;
-    location: west;
-    anchor: west;
-    height: 100%;
-    margin: 0;
+    location: center;
+    anchor: center;
+    width: 720px;
+   padding: 28px;
+   border-radius: 20px;   background-color: @bg;
 }
 
 #mainbox {
-    background-color: @background;
-    spacing: 10px;
-    margin: 10px 0 0 0;
-    width: 200px;
+    background-color: transparent;
+    spacing: 16px;
 }
 
 #inputbar {
-    children: [prompt,entry];
-    background-color: @background;
+    background-color: @bg-alt;
+    border-radius: 12px;
+    padding: 14px 18px;   spacing: 10px;
+    children: [prompt, entry];
 }
 
 #listview {
-    background-color: @background;
-    fixed-height: true;
-    margin: 5px 0 0 10px;
+    background-color: transparent;
+    spacing: 6px;
+    margin: 12px 0 0 0;
 }
 
 #element {
-    padding: 5px;
-    background-color: @background;
-    text-color: @foreground;
+    background-color: transparent;
+    padding: 8px 10px;
+    text-color: @fg;
 }
 
 element selected {
-    bg-selected: #101F24;
-    text-color: #FFD166;
+    background-color: @bg-alt;
+    text-color: @fg;
+    border-radius: 10px;
 }
 
 element-text {
@@ -57,23 +52,20 @@ element-text {
 }
 
 element-icon {
-    background-color: inherit;
-    margin: 0 4px 0 0;
-    size: 25px;
+    background-color: transparent;
+    size: 28px;
+    margin: 0 14px 0 0;
 }
 
 #entry {
-   background-color: @background;
-   text-color: @foreground;
-   placeholder: "Search";
-   placeholder-color: @grey;
-   font: "Sora Regular 20";
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search";
+    placeholder-color: @fg-muted;
+    font: "Sora Medium 18";
 }
 
 #prompt {
-   background-color: @background;
-   padding: 0 4px;
-   margin: 0 5px 0 0;
-   text-color: @foreground;
-   font: "Sora Regular 20";
+    text-color: @fg-muted;
+    font: "Sora Medium 14";
 }
