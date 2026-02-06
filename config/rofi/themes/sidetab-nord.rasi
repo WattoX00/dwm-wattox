@@ -1,9 +1,11 @@
 * {
-    background: #1e222a;
-    foreground: #E5E9F0;
+    background: #0E1B1F;
+    foreground: #E6E1CF;
     border-color: @background;
-    bg-selected: #282c34;
-    grey: #565c64;
+
+    bg-selected: #14262C;
+    grey: #7FA6A0;
+
     spacing: 2;
     width: 30em;
     margin: 0;
@@ -45,8 +47,8 @@
 }
 
 element selected {
-    background-color: @bg-selected;
-    text-color: @foreground;
+    bg-selected: #101F24;
+    text-color: #FFD166;
 }
 
 element-text {
@@ -75,4 +77,3 @@ element-icon {
    text-color: @foreground;
    font: "Sora Regular 20";
 }
-
