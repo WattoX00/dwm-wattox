@@ -4,13 +4,8 @@ This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm
 
 ## Installation
 
-1. Launch Linutil Project with the command:
-    ```bash
-    curl -fsSL christitus.com/linux | sh
-    ```
-
-2. Get arch linux server
-3. After a reboot write these commands:
+1. Assuming you have a base TTY set up with internet and other stuff ( I would recommend christitus arch server setup for that )
+2. After a fresh login write these commands:
     ```bash
     git clone https://github.com/WattoX00/arch-setup.git
 
@@ -20,6 +15,9 @@ This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm
 
     bash dwm-wattox.sh
     ```
+3. This will run the isntallation script and will ask for sudo permission a few times
+
+See here what it will install: [ArchSetup](https://github.com/WattoX00/arch-setup)
 
 ## ❤️ Support
 
