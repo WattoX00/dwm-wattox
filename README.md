@@ -1,5 +1,7 @@
 # My modified dwm
 
+![DEMO](assets_for_github/demo1.png)
+
 This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm-titus](https://github.com/ChrisTitusTech/dwm-titus) dwm window manager just fine tuned for my preferances.
 
 ## Installation
@@ -18,6 +20,10 @@ This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm
 3. This will run the isntallation script and will ask for sudo permission a few times
 
 See here what it will install: [ArchSetup](https://github.com/WattoX00/arch-setup)
+
+![DEMO2](assets_for_github/demo2.png)
+
+![DEMO3](assets_for_github/demo3.png)
 
 ## ❤️ Support
 
