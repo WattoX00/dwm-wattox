@@ -5,22 +5,25 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
 # copy to clipboard ->  command | ccopy
 alias ccopy='xclip -selection clipboard'
 
-# git workflow boost (turn these off)
+# git commands
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m'
 alias gp='git push'
 
+# j insted of cd
+eval "$(zoxide init bash --cmd j)"
+alias cd="j"
+
+# eza for l commands
+alias ls="eza --icons"
+alias ll="eza -lh --icons"
+alias la="eza -lha --icons"
+
 PS1='[\u@\h \W]\$ '
 
 # Run fastfetch on shell initialization
 fastfetch
-
-# Created by `pipx` on 2026-02-01 15:36:22
-export PATH="$PATH:/home/wattox/.local/bin"
