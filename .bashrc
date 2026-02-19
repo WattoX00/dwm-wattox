@@ -5,10 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# copy to clipboard ->  command | ccopy
+# command | ccopy
 alias ccopy='xclip -selection clipboard'
 
-# git commands
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m'
@@ -17,6 +16,8 @@ alias gp='git push'
 # j insted of cd
 eval "$(zoxide init bash --cmd j)"
 alias cd="j"
+alias ..="cd .."
+alias p="pwd"
 
 # eza for l commands
 alias ls="eza --icons"
