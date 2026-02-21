@@ -31,7 +31,7 @@ install: all
 	test -f /home/${SUDO_USER}/.xinitrc || install -Dm644 .xinitrc /home/${SUDO_USER}/.xinitrc
 	test -f /home/${SUDO_USER}/.Xresources || install -Dm644 .Xresources /home/${SUDO_USER}/.Xresources
 	su - ${SUDO_USER} -c "xrdb -merge ~/.Xresources"
-	test -f /home/${SUDO_USER}/.bashrc || install -Dm644 .bashrc /home/${SUDO_USER}/.bashrc
+	install -Dm644 .bashrc /home/${SUDO_USER}/.bashrc
 	mkdir -p /home/${SUDO_USER}/.config/polybar
 	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
 	chmod +x /home/${SUDO_USER}/.config/polybar/launch.sh
