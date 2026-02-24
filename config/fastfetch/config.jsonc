@@ -1,129 +1,115 @@
 {
-"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-"logo": {
-"padding": {
-"top": 1
-}
-},
-"display": {
-"separator": " 󰑃  "
-},
-"modules": [
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "padding": {
+      "top": 1
+    }
+  },
+  "display": {
+    "separator": " 󰑃  "
+  },
+  "modules": [
     "break",
+
     {
-    "type": "os",
-    "key": " DISTRO",
-    "keyColor": "yellow"
+      "type": "os",
+      "key": "╭─ DISTRO",
+      "keyColor": "bright_yellow"
     },
     {
-    "type": "kernel",
-    "key": "│ ├",
-    "keyColor": "yellow"
+      "type": "kernel",
+      "key": "│ ├",
+      "keyColor": "bright_yellow"
     },
     {
-    "type": "packages",
-    "key": "│ ├󰏖",
-    "keyColor": "yellow"
+      "type": "packages",
+      "key": "│ ├󰏖",
+      "keyColor": "bright_yellow"
     },
     {
-    "type": "command",
-    "key": "│ ├",
-    "keyColor": "yellow",
-    "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
-    },
-    {
-    "type": "shell",
-    "key": "│ └",
-    "keyColor": "yellow"
+      "type": "command",
+      "key": "│ └",
+      "keyColor": "bright_yellow",
+      "text": "birth_install=$(stat -c %W / 2>/dev/null); [ \"$birth_install\" -eq 0 ] && birth_install=$(stat -c %Y /); current=$(date +%s); echo \"$(((current - birth_install)/86400)) days\""
     },
 
     {
-    "type": "wm",
-    "key": " DE/WM",
-    "keyColor": "blue"
+      "type": "wm",
+      "key": "╭─ DE/WM",
+      "keyColor": "bright_blue"
     },
     {
-    "type": "wmtheme",
-    "key": "│ ├󰉼",
-    "keyColor": "blue"
+      "type": "terminal",
+      "key": "│ ├",
+      "keyColor": "bright_blue"
+    },
+
+    {
+      "type": "host",
+      "key": "╭─󰌢 SYSTEM",
+      "keyColor": "bright_green"
     },
     {
-    "type": "icons",
-    "key": "│ ├󰀻",
-    "keyColor": "blue"
+      "type": "cpu",
+      "key": "│ ├󰻠 CPU",
+      "format": "{1}",
+      "keyColor": "bright_green"
     },
     {
-        "type": "cursor",
-        "key": "│ ├",
-        "keyColor": "blue",
+      "type": "cpu",
+      "key": "│ ├󰻠 CPU %", 
+      "format": "{3}%", 
+      "keyColor": "bright_green"
     },
     {
-        "type": "terminalfont",
-        "key": "│ ├",
-        "keyColor": "blue",
+      "type": "gpu",
+      "key": "│ ├󰻑 GPU",
+      "format": "{2}",
+      "keyColor": "bright_green"
     },
     {
-    "type": "terminal",
-    "key": "│ └",
-    "keyColor": "blue"
+      "type": "memory",
+      "key": "│ ├󰾆 RAM",
+      "keyColor": "bright_green"
     },
     {
-    "type": "host",
-    "key": "󰌢 SYSTEM",
-    "keyColor": "green"
+      "type": "swap",
+      "key": "│ ├󰓡 SWAP",
+      "keyColor": "bright_green"
     },
     {
-    "type": "cpu",
-    "key": "│ ├󰻠",
-    "keyColor": "green"
+      "type": "disk",
+      "key": "│ ├󰋊 Disk",
+      "folders": ["/"],
+      "keyColor": "bright_green"
     },
     {
-    "type": "gpu",
-    "key": "│ ├󰻑",
-    "format": "{2}",
-    "keyColor": "green"
+      "type": "uptime",
+      "key": "│ └󰅐 Uptime",
+      "keyColor": "bright_green"
+    },
+
+    {
+      "type": "sound",
+      "key": "╭─ AUDIO",
+      "format": "{2}",
+      "keyColor": "bright_magenta"
     },
     {
-    "type": "display",
-    "key": "│ ├󰍹",
-    "keyColor": "green",
-    "compactType": "original-with-refresh-rate"
+      "type": "player",
+      "key": "│ ├󰥠 Player",
+      "keyColor": "bright_magenta"
     },
     {
-    "type": "memory",
-    "key": "│ ├󰾆",
-    "keyColor": "green"
+      "type": "media",
+      "key": "│ └󰝚 Media",
+      "keyColor": "bright_magenta"
     },
+
     {
-    "type": "swap",
-    "key": "│ ├󰓡",
-    "keyColor": "green"
+      "type": "custom",
+      "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38;5;15m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m\u001b[0m"
     },
-    {
-    "type": "uptime",
-    "key": "│ ├󰅐",
-    "keyColor": "green"
-    },
-    {
-    "type": "sound",
-    "key": " AUDIO",
-    "format": "{2}",
-    "keyColor": "magenta"
-    },
-    {
-    "type": "player",
-    "key": "│ ├󰥠",
-    "keyColor": "magenta"
-    },
-    {
-    "type": "media",
-    "key": "│ └󰝚",
-    "keyColor": "magenta"
-    },
-    {
-    "type": "custom",
-    "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38;5;15m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m\u001b[0m"
-    },
-    "break",
-    ]
+    "break"
+  ]
 }
