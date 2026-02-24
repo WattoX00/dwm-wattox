@@ -5,9 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# command | ccopy
 alias ccopy='xclip -selection clipboard'
-
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m'
@@ -23,6 +21,8 @@ alias p="pwd"
 alias ls="eza --icons"
 alias ll="eza -lh --icons"
 alias la="eza -lha --icons"
+
+alias rld='clear && fastfetch'
 
 PS1='[\u@\h \W]\$ '
 
