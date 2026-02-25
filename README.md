@@ -12,6 +12,86 @@ See installationhere: [ArchSetup](https://github.com/WattoX00/arch-setup)
 
 ![DEMO1](assets_for_github/demo1.png)
 
+## Configuration Location
+
+All configuration files are available at:
+
+```bash
+~/.local/share/dwm-wattox
+```
+
+Make your changes inside that directory.
+
+After modifying configs, recompile and install:
+
+```bash
+cd ~/.local/share/dwm-wattox
+sudo make clean install
+```
+
+Then either:
+
+- Reboot
+
+OR
+
+- Press `Win + Shift + Q` to exit to TTY and run:
+
+```bash
+startx
+```
+
+## Base Hotkeys (modifiable in config.c)
+
+### General Commands
+
+| Keybinding | Action |
+|------------|--------|
+| Win + /    | Show command list |
+| Win + R    | Rofi menu |
+| Win + X    | Open terminal |
+| Win + E    | Thunar file manager |
+| Win + N    | Todol |
+| Win + U    | nvim |
+| Win + B    | Open browser |
+| Win + P    | Take screenshot |
+| Win + M    | Toggle fullscreen |
+| Win + Q    | Close active window |
+
+
+## Workspaces / Tags
+
+| Keybinding | Action |
+|------------|--------|
+| Win + 1–9  | Switch between tags/workspaces |
+
+## Window Navigation
+
+| Keybinding | Action |
+|------------|--------|
+| Win + K    | Focus next window |
+| Win + J    | Focus previous window |
+
+## Window Ordering / Layout Control
+
+Use the following:
+
+Win + H  
+Win + L  
+Win + I  
+Win + O  
+Win + T  
+Win + F  
+
+## Notes
+
+- `Win` = Super key
+- All keybindings are defined in `config.c`
+- Recompile after every change
+- Make sure required applications are installed and available in `$PATH`
+
+Enjoy 🚀
+
 ## ❤️ Support
 
 If this project saved you time, taught you something, or made your day a little easier,
