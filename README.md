@@ -87,8 +87,6 @@ Win + F
 
 - `Win` = Super key
 - All keybindings are defined in `config.c`
-- Recompile after every change
-- Make sure required applications are installed and available in `$PATH`
 
 Enjoy 🚀
 
