@@ -6,7 +6,7 @@ This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm
 
 ## Installation
 
-See installationhere: [ArchSetup](https://github.com/WattoX00/arch-setup)
+See automated arch installation here: [ArchSetup](https://github.com/WattoX00/arch-setup)
 
 ![DEMO3](assets_for_github/demo3.png)
 
