@@ -89,6 +89,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_p,                      spawn,          SHCMD ("flameshot gui -p ~/Pictures/screenshots/")},
     { MODKEY|ControlMask,           XK_p,                      spawn,          SHCMD ("flameshot gui --clipboard")},
     { MODKEY,                       XK_e,                      spawn,          SHCMD ("xdg-open .")},
+    { MODKEY,                       XK_v,                      spawn,          {.v = (const char*[]){ "clipmenu", NULL } } },
     { MODKEY,                       XK_slash,                  spawn,          SHCMD ("dwm-keybinds")},
     { MODKEY|ShiftMask,             XK_w,                      spawn,          SHCMD ("feh --randomize --bg-fill ~/Pictures/backgrounds/*")},
     { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD ("brightnessctl set +10%")},
