@@ -5,7 +5,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# clipmenud setup
+export CM_LAUNCHER="rofi"
+export CM_HISTLENGTH=15
+
+# command | coppy
 alias ccopy='xclip -selection clipboard'
+
+# git aliases
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m'
