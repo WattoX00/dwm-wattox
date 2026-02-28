@@ -34,17 +34,6 @@ static const char *colors[][3] = {
     [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor },
 };
 
-static const char *const autostart[] = {
-    "dbus-update-activation-environment", "--systemd", "--all", NULL,
-    "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1", NULL,
-    "flameshot", NULL,
-    "dunst", NULL,
-    "picom", "-b", NULL,
-    "nm-applet", NULL,
-    "sh", "-c", "feh --randomize --bg-fill ~/Pictures/backgrounds/*", NULL,
-    NULL
-};
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char ptagf[] = "[%s %s]";  /* format of a tag label */
