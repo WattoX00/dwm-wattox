@@ -13,5 +13,5 @@ export CM_MAX_CLIPS=100
 # start autostart script first
 sh "$HOME/.config/autostart/autostart.sh"
 
-# finally, start dwm
+# start dwm
 exec dwm
