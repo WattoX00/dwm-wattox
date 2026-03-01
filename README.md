@@ -106,11 +106,11 @@ Enjoy 🚀
 
 🖥 Terminal & Shell Workflow
 
-* Alacritty – Terminal emulator
-* ttf-meslo-nerd – Nerd Font (Meslo) for terminal glyphs
-* fastfetch – System information display
-* eza – Modern replacement for ls
-* zoxide – Smarter cd command
+* [Alacritty](https://github.com/alacritty/alacritty) – Terminal emulator
+* [ttf-meslo-nerd](https://github.com/ryanoasis/nerd-fonts) – Nerd Font (Meslo) for terminal glyphs
+* [fastfetch](https://github.com/fastfetch-cli/fastfetch) – System information display
+* [eza](https://github.com/eza-community/eza) – Modern replacement for ls
+* [zoxide](https://github.com/ajeetdsouza/zoxide) – Smarter cd command
 
 🧠 Editor & Development Tools
 
