@@ -7,7 +7,6 @@
     accent:        #EBCB8B;
     urgent:        #BF616A;
 
-    border-radius: 14px;
     spacing: 8px;
     font: "Sora Medium 14";
 }
@@ -20,7 +19,6 @@ window {
     padding: 22px;
     border: 1px;
     border-color: rgba(235, 203, 139, 0.15);
-    border-radius: 18px;
     background-color: rgba(17, 24, 27, 0.96);
 }
 
