@@ -153,28 +153,28 @@ Enjoy 🚀
 
 🖥 Xorg & Display
 
-* xorg-server – Xorg display server
+* [xorg-server](https://www.x.org/wiki/) – Xorg display server
 * xorg-xinit – Start X sessions
 * xorg-xprop – X window property utility
-* libx11 – X11 client library
-* libxinerama – Multi-monitor support library
-* libxft – Font rendering library
-* imlib2 – Image loading/rendering library
+* [libx11](https://gitlab.freedesktop.org/xorg/lib/libx11) – X11 client library
+* [libxinerama](https://gitlab.freedesktop.org/xorg/lib/libxinerama) – Multi-monitor support library
+* [libxft](https://gitlab.freedesktop.org/xorg/lib/libxft) – Font rendering library
+* [imlib2](https://docs.enlightenment.org/api/imlib2/html/) – Image loading/rendering library
 
 💡 Hardware & System Controls
 
-* brightnessctl – Brightness control utility
+* [brightnessctl](https://github.com/Hummer12007/brightnessctl) – Brightness control utility
 
 🧰 Productivity & Utilities
 
-* flameshot – Screenshot utility
-* xclip – Clipboard utility
-* flatpak – Flatpak application support
+* [flameshot](https://flameshot.org/) – Screenshot utility
+* [xclip](https://github.com/astrand/xclip) – Clipboard utility
+* [flatpak](https://flatpak.org/) – Flatpak application support
 
 🔤 Fonts
 
-* noto-fonts-emoji – Emoji font support
-* noto-fonts-cjk – CJK (Chinese, Japanese, Korean) font support
+* [noto-fonts-emoji](https://fonts.google.com/noto/specimen/Noto+Emoji) – Emoji font support
+* [noto-fonts-cjk](https://archlinux.org/packages/extra/any/noto-fonts/) – CJK (Chinese, Japanese, Korean) font support
 
 🗂 User Configuration
 
