@@ -98,11 +98,11 @@ Enjoy 🚀
 
 🎨 Theming & Appearance
 
-* feh – Wallpaper management
-* nwg-look – GTK theme configuration
-* picom – Compositor (transparency, animations)
-* polybar – Status bar
-* redshift – Screen color temperature adjustment
+* [feh](https://feh.finalrewind.org/) – Wallpaper management
+* [nwg-look](https://github.com/nwg-piotr/nwg-look) – GTK theme configuration
+* [picom](https://github.com/yshui/picom) – Compositor (transparency, animations)
+* [polybar](https://github.com/polybar/polybar) – Status bar
+* [redshift](https://wiki.archlinux.org/title/Redshift) – Screen color temperature adjustment
 
 🖥 Terminal & Shell Workflow
 
