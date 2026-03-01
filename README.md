@@ -122,9 +122,9 @@ Enjoy 🚀
 
 🔍 Launchers & Notifications
 
-* rofi – Application launcher
-* dunst – Notification daemon
-* clipmenud – Clipboard manager for rofi
+* [rofi](https://github.com/davatorium/rofi) – Application launcher
+* [dunst](https://github.com/dunst-project/dunst) – Notification daemon
+* [clipmenud](https://github.com/cdown/clipmenu) – Clipboard manager for rofi
 
 📁 File Management
 
