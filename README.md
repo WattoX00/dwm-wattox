@@ -140,16 +140,16 @@ Enjoy 🚀
 
 🌐 Networking & Internet
 
-* networkmanager – Network management service
-* network-manager-applet – NetworkManager tray applet
-* firefox – Web browser
+* [networkmanager](https://networkmanager.dev/) – Network management service
+* [network-manager-applet](https://wiki.gnome.org/Projects/NetworkManager) – NetworkManager tray applet
+* [firefox](https://www.firefox.com/en-US/) – Web browser
 
 🔐 Session & System Utilities
 
-* mate-polkit – PolicyKit authentication agent
-* gnome-keyring – Credential storage
-* xdg-user-dirs – Standard user directories
-* xdg-desktop-portal-gtk – Desktop portal backend for GTK
+* [mate-polkit](https://github.com/mate-desktop/mate-polkit) – PolicyKit authentication agent
+* [gnome-keyring](https://wiki.gnome.org/Projects/GnomeKeyring) – Credential storage
+* [xdg-user-dirs](https://www.freedesktop.org/wiki/Software/xdg-user-dirs/) – Standard user directories
+* [xdg-desktop-portal-gtk](https://github.com/flatpak/xdg-desktop-portal-gtk) – Desktop portal backend for GTK
 
 🖥 Xorg & Display
 
