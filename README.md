@@ -95,79 +95,92 @@ Enjoy 🚀
 
 <details>
 <summary>Click to expand</summary>
+
 🎨 Theming & Appearance
 
-- Bibata Modern Ice – Cursor theme
-
-- feh – Wallpaper management
-
-- nwg-look – GTK theme configuration
-
-- picom – Compositor (transparency, animations)
-
-- polybar – Status bar
+* feh – Wallpaper management
+* nwg-look – GTK theme configuration
+* picom – Compositor (transparency, animations)
+* polybar – Status bar
+* redshift – Screen color temperature adjustment
 
 🖥 Terminal & Shell Workflow
 
-- Alacritty – Terminal emulator
-
-- Nerd Fonts – Icon and glyph support
-
-- Fastfetch - PC specs
+* Alacritty – Terminal emulator
+* ttf-meslo-nerd – Nerd Font (Meslo) for terminal glyphs
+* fastfetch – System information display
+* eza – Modern replacement for ls
+* zoxide – Smarter cd command
 
 🧠 Editor & Development Tools
 
-- LazyVim – Custom Neovim configuration
+* neovim (nvim) – Text editor
+* python-pipx – Isolated Python application installs
+* git – Version control
+* base-devel – Essential development tools
+* unzip – Archive extraction
 
 🔍 Launchers & Notifications
 
-- Rofi – Application launcher
-
-- Dunst – Notification daemon
+* rofi – Application launcher
+* dunst – Notification daemon
+* clipmenud – Clipboard manager for rofi
 
 📁 File Management
 
-- Thunar – File manager
-
-- tumbler – Thumbnail support
-
-- gvfs – Virtual filesystem support
+* thunar – File manager
+* thunar-archive-plugin – Archive integration for Thunar
+* tumbler – Thumbnail support
+* gvfs – Virtual filesystem support
 
 🔊 Audio & Media Utilities
 
-- PipeWire – Audio server
+* PipeWire – Audio server
+* pavucontrol – Audio control GUI
 
-- pavucontrol – Audio control GUI
+🌐 Networking & Internet
 
-- alsa-utils – ALSA utilities
+* networkmanager – Network management service
+* network-manager-applet – NetworkManager tray applet
+* firefox – Web browser
 
 🔐 Session & System Utilities
 
-- mate-polkit – PolicyKit authentication agent
+* mate-polkit – PolicyKit authentication agent
+* gnome-keyring – Credential storage
+* xdg-user-dirs – Standard user directories
+* xdg-desktop-portal-gtk – Desktop portal backend for GTK
 
-- gnome-keyring – Credential storage
+🖥 Xorg & Display
 
-- network-manager-applet – NetworkManager tray applet
+* xorg-server – Xorg display server
+* xorg-xinit – Start X sessions
+* xorg-xprop – X window property utility
+* libx11 – X11 client library
+* libxinerama – Multi-monitor support library
+* libxft – Font rendering library
+* imlib2 – Image loading/rendering library
 
-🧰 Productivity & Miscellaneous
+💡 Hardware & System Controls
 
-- flameshot – Screenshot utility
+* brightnessctl – Brightness control utility
 
-- xclip – Clipboard utility
+🧰 Productivity & Utilities
 
-- xdg-user-dirs – Standard user directories
+* flameshot – Screenshot utility
+* xclip – Clipboard utility
+* flatpak – Flatpak application support
 
-- flatpak – Flatpak support
+🔤 Fonts
 
-- python-pipx – Isolated Python application installs
-
-- [Todol](https://github.com/wattox00/todol) – Personal task/todo application
+* noto-fonts-emoji – Emoji font support
+* noto-fonts-cjk – CJK (Chinese, Japanese, Korean) font support
 
 🗂 User Configuration
 
-Custom dotfiles and configuration folders
+* Custom dotfiles and configuration folders
+* Custom background setup
 
-Custom background setup
 </details>
 
 ## ❤️ Support
