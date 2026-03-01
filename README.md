@@ -114,11 +114,11 @@ Enjoy 🚀
 
 🧠 Editor & Development Tools
 
-* neovim (nvim) – Text editor
-* python-pipx – Isolated Python application installs
-* git – Version control
-* base-devel – Essential development tools
-* unzip – Archive extraction
+* [neovim](https://neovim.io/) – Text editor
+* [python-pipx](https://github.com/pypa/pipx) – Isolated Python application installs
+* [git](https://git-scm.com/) – Version control
+* [base-devel](https://archlinux.org/packages/core/any/base-devel/) – Essential development tools
+* [unzip](https://infozip.sourceforge.net/UnZip.html) – Archive extraction
 
 🔍 Launchers & Notifications
 
