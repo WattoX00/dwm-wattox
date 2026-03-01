@@ -128,15 +128,15 @@ Enjoy 🚀
 
 📁 File Management
 
-* thunar – File manager
+* [thunar](https://docs.xfce.org/xfce/thunar/start) – File manager
 * thunar-archive-plugin – Archive integration for Thunar
-* tumbler – Thumbnail support
-* gvfs – Virtual filesystem support
+* [tumbler](https://docs.xfce.org/xfce/tumbler/start) – Thumbnail support
+* [gvfs](https://wiki.gnome.org/Projects/gvfs) – Virtual filesystem support
 
 🔊 Audio & Media Utilities
 
-* PipeWire – Audio server
-* pavucontrol – Audio control GUI
+* [PipeWire](https://pipewire.org/) – Audio server
+* [pavucontrol](https://gitlab.freedesktop.org/pulseaudio/pavucontrol) – Audio control GUI
 
 🌐 Networking & Internet
 
