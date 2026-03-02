@@ -1,16 +1,16 @@
 # My modified dwm
 
-![DEMO2](assets_for_github/demo2.png)
+![DEMO1](assets_for_github/demo1.png)
 
 This is my **HEAVILY MODIFIED** version of dwm. It is based on the original [dwm-titus](https://github.com/ChrisTitusTech/dwm-titus) dwm window manager just fine tuned for my preferances.
+
+![DEMO2](assets_for_github/demo2.png)
+
+![DEMO3](assets_for_github/demo3.png)
 
 ## Installation
 
 See automated arch installation here: [ArchSetup](https://github.com/WattoX00/arch-setup)
-
-![DEMO3](assets_for_github/demo3.png)
-
-![DEMO1](assets_for_github/demo1.png)
 
 ## Configuration Location
 
