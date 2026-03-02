@@ -4,6 +4,7 @@ xrdb -merge ~/.Xresources
 export XCURSOR_THEME=Bibata-Modern-Ice
 export XCURSOR_SIZE=24
 
+rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*
 export PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin
 export CM_LAUNCHER="rofi"
 export CM_HISTLENGTH=15
@@ -13,5 +14,5 @@ export CM_MAX_CLIPS=100
 # start autostart script first
 sh "$HOME/.config/autostart/autostart.sh"
 
-# start dwm
+# finally, start dwm
 exec dwm
