@@ -3,8 +3,10 @@
 # clipboard
 clipmenud &
 
-# reshift
-redshift -m randr -l 47.9:20.4 -t 5500:3000 -r &
+# redshift
+# Find your coordinates: https://www.latlong.net/
+# Replace 0.0:0.0 with your city's latitude:longitude
+redshift -m randr -l 0.0:0.0 -t 5500:3000 -r &
 
 # system services
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
