@@ -3,6 +3,9 @@
 # clipboard
 clipmenud &
 
+# reshift
+redshift -m randr -l 47.9:20.4 -t 5500:3000 -r &
+
 # system services
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 nm-applet &
