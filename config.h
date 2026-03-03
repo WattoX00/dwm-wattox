@@ -60,6 +60,8 @@ static const Layout layouts[] = {
     { "",      monocle },
 };
 
+static const char *const autostart[] = { NULL };
+
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
