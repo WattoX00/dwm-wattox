@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Web-thunar bug fix
+export XDG_CURRENT_DESKTOP=XFCE
+export DESKTOP_SESSION=xfce
+
+systemctl --user import-environment DISPLAY XAUTHORITY
+dbus-update-activation-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP DESKTOP_SESSION
+
 xrdb -merge ~/.Xresources
 export XCURSOR_THEME=Bibata-Modern-Ice
 export XCURSOR_SIZE=24
