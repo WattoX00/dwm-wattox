@@ -78,6 +78,7 @@ static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
 static const char *todomd[]    = { "alacritty", "-e", "todol", NULL };
+static const char *lysnmd[]    = { "alacritty", "-e", "lysn", NULL };
 
 static Key keys[] = {
     /* modifier                     key                        function        argument */
@@ -86,6 +87,7 @@ static Key keys[] = {
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
     { MODKEY,                       XK_n,                      spawn,          {.v = todomd } },
+    { MODKEY,                       XK_a,                      spawn,          {.v = lysnmd } },
     { MODKEY,                       XK_b,                      spawn,          SHCMD ("xdg-open https://")},
     { MODKEY,                       XK_p,                      spawn,          SHCMD ("flameshot full -p ~/Pictures/screenshots/")},
     { MODKEY|ShiftMask,             XK_p,                      spawn,          SHCMD ("flameshot gui -p ~/Pictures/screenshots/")},
