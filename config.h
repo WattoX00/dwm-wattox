@@ -95,7 +95,7 @@ static Key keys[] = {
     { MODKEY,                       XK_e,                      spawn,          SHCMD ("xdg-open .")},
     { MODKEY,                       XK_v,                      spawn,          {.v = (const char*[]){ "clipmenu", NULL } } },
     { MODKEY,                       XK_slash,                  spawn,          SHCMD ("dwm-keybinds")},
-    { MODKEY,                       XC_dot,                    spawn,          SHCMD ("/usr/bin/rofimoji")},
+    { MODKEY,                       XC_c,                    spawn,          SHCMD ("/usr/bin/rofimoji")},
     { MODKEY|ShiftMask,             XK_w,                      spawn,          SHCMD ("feh --randomize --bg-fill ~/Pictures/backgrounds/*")},
     { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD ("brightnessctl set +10%")},
     { 0,                            XF86XK_MonBrightnessDown,  spawn,          SHCMD ("brightnessctl set 10%-")},
