@@ -51,8 +51,9 @@ startx
 | Win + R    | Rofi menu |
 | Win + X    | Open terminal |
 | Win + E    | Thunar file manager |
-| Win + N    | Todol |
-| Win + U    | nvim |
+| Win + N    | todol |
+| Win + A    | lysn |
+| Win + U    | nvim . |
 | Win + B    | Open browser |
 | Win + P    | Take screenshot |
 | Win + M    | Toggle fullscreen |
