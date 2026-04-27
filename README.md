@@ -49,6 +49,7 @@ startx
 |------------|--------|
 | Win + /    | Show command list |
 | Win + R    | Rofi menu |
+| Win + C    | Emoji picker |
 | Win + X    | Open terminal |
 | Win + E    | Thunar file manager |
 | Win + N    | todol |
