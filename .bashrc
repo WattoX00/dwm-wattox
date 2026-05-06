@@ -24,6 +24,9 @@ alias cd="j"
 alias ..="cd .."
 alias p="pwd"
 
+# Clear clipboard history
+alias cch="rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*"
+
 # eza for l commands
 alias ls="eza --icons"
 alias ll="eza -lh --icons"
