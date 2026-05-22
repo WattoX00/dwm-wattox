@@ -27,6 +27,10 @@ alias p="pwd"
 # Clear clipboard history
 alias cch="rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*"
 
+#python virtual enviraments
+alias pv="python -m venv .venv"
+alias sv="source .venv/bin/activate"
+
 # eza for l commands
 alias ls="eza --icons"
 alias ll="eza -lh --icons"
