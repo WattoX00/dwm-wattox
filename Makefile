@@ -30,6 +30,7 @@ install: all
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	test -f /home/${SUDO_USER}/.xinitrc || install -Dm644 .xinitrc /home/${SUDO_USER}/.xinitrc
 	test -f /home/${SUDO_USER}/.Xresources || install -Dm644 .Xresources /home/${SUDO_USER}/.Xresources
+	install -Dm755 config/autostart/autostart.sh /home/${SUDO_USER}/.config/autostart/autostart.sh
 	install -Dm644 .bashrc /home/${SUDO_USER}/.bashrc
 	mkdir -p /home/${SUDO_USER}/.config/polybar
 	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
@@ -49,6 +50,7 @@ release: dwm
 	cp -f .Xresources release/
 	cp -rf polybar release/
 	cp -rf scripts release/
-	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm .xinitrc .Xresources polybar scripts
+	cp -rf config/autostart release/
+	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm .xinitrc .Xresources polybar scripts config/autostart
 
 .PHONY: all clean install uninstall release

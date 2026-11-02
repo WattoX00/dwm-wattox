@@ -18,7 +18,7 @@ export CM_HISTLENGTH=15
 export CM_DIR="$HOME/.cache/clipmenu"
 export CM_MAX_CLIPS=100
 
-# start autostart script first
+# Start the session's programs from one script.
 sh "$HOME/.config/autostart/autostart.sh"
 
 # start dwm
