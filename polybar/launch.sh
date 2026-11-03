@@ -2,9 +2,23 @@
 
 THEME="minimal"
 
-# Kill all existing polybar instances
-killall polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$UID}"
+if [ ! -d "$RUNTIME_DIR" ] || [ ! -w "$RUNTIME_DIR" ]; then
+	printf 'Polybar launcher: runtime directory is unavailable: %s\n' "$RUNTIME_DIR" >&2
+	exit 1
+fi
+if ! command -v flock >/dev/null 2>&1; then
+	printf '%s\n' 'Polybar launcher: flock is required for single-instance startup' >&2
+	exit 1
+fi
+
+DISPLAY_ID="${DISPLAY:-unknown}"
+DISPLAY_ID="${DISPLAY_ID//[^[:alnum:]]/_}"
+exec 9>"$RUNTIME_DIR/dwm-polybar-$DISPLAY_ID.lock"
+if ! flock -n 9; then
+	printf 'Polybar launcher: already running on display %s; skipping duplicate launch\n' "${DISPLAY:-unknown}" >&2
+	exit 0
+fi
 
 CONFIG_FILE="$HOME/.local/share/dwm-wattox/polybar/themes/$THEME/config.ini"
 LAPTOP_CONFIG_FILE="$HOME/.local/share/dwm-wattox/polybar/themes/$THEME/laptop-config.ini"
@@ -32,7 +46,7 @@ if command -v xrandr > /dev/null 2>&1; then
     
     echo "Detected $MONITOR_COUNT monitors: ${MONITORS[*]}"
     
-    if [ $MONITOR_COUNT -eq 1 ]; then
+    if [ "$MONITOR_COUNT" -eq 1 ]; then
         # Single monitor setup - launch main bar with tray and EWMH
         echo "Single monitor setup - launching main polybar with tray and EWMH on ${MONITORS[0]}"
         MONITOR=${MONITORS[0]} polybar main -c "$CONFIG_FILE" &

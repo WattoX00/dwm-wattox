@@ -48,10 +48,13 @@ user-session=dwm
 If another display manager is enabled, disable it before enabling LightDM. Reboot
 and choose **dwm** from the session selector on the login screen. To keep using
 `startx` instead, the included `.xinitrc` forwards to the same dwm session
-startup script.
+startup script. That shared launcher starts the session applications from
+`~/.config/dwm/autostart.sh`; `make install` creates this file only if absent,
+so existing startup customizations are preserved. Keep it outside
+`~/.config/autostart`, which is reserved for XDG `.desktop` entries.
 
 
-## Base Hotkeys (modifiable in config.c)
+## Base Hotkeys (modifiable in config.h)
 
 ### General Commands
 
@@ -98,7 +101,7 @@ Win + F
 ## Notes
 
 - `Win` = Super key
-- All keybindings are defined in `config.c`
+- All keybindings are defined in `config.h`
 
 Enjoy 🚀
 

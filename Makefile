@@ -31,7 +31,7 @@ install: all
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	test -f /home/${SUDO_USER}/.xinitrc || install -Dm644 .xinitrc /home/${SUDO_USER}/.xinitrc
 	test -f /home/${SUDO_USER}/.Xresources || install -Dm644 .Xresources /home/${SUDO_USER}/.Xresources
-	install -Dm755 config/autostart/autostart.sh /home/${SUDO_USER}/.config/autostart/autostart.sh
+	test -e /home/${SUDO_USER}/.config/dwm/autostart.sh || install -Dm755 config/autostart/autostart.sh /home/${SUDO_USER}/.config/dwm/autostart.sh
 	install -Dm644 .bashrc /home/${SUDO_USER}/.bashrc
 	mkdir -p /home/${SUDO_USER}/.config/polybar
 	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
