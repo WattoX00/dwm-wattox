@@ -42,3 +42,5 @@ PS1='[\u@\h \W]\$ '
 
 # Run fastfetch on shell initialization
 fastfetch
+
+eval "$(starship init bash)"
