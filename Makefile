@@ -25,6 +25,7 @@ clean:
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	install -Dm755 dwm ${DESTDIR}${PREFIX}/bin/dwm
+	install -Dm644 dwm.desktop ${DESTDIR}${XSESSIONSDIR}/dwm.desktop
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
@@ -41,16 +42,19 @@ install: all
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm \
+		${DESTDIR}${PREFIX}/bin/dwm-session \
+		${DESTDIR}${XSESSIONSDIR}/dwm.desktop \
 		${DESTDIR}${MANPREFIX}/man1/dwm.1 \
 
 release: dwm
 	mkdir -p release
 	cp -f dwm release/
+	cp -f dwm.desktop release/
 	cp -f .xinitrc release/
 	cp -f .Xresources release/
 	cp -rf polybar release/
 	cp -rf scripts release/
 	cp -rf config/autostart release/
-	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm .xinitrc .Xresources polybar scripts config/autostart
+	tar -czf release/Omitus-${VERSION}.tar.gz -C release dwm dwm.desktop .xinitrc .Xresources polybar scripts config/autostart
 
 .PHONY: all clean install uninstall release

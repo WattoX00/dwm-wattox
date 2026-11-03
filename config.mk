@@ -6,6 +6,7 @@ VERSION = 0.4
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
+XSESSIONSDIR = /usr/share/xsessions
 
 X11INC = /usr/include
 X11LIB = /usr/lib

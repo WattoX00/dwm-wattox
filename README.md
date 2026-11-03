@@ -29,17 +29,27 @@ cd ~/.local/share/dwm-wattox
 sudo make clean install
 ```
 
-Then either:
-
-- Reboot
-
-OR
-
-- Press `Win + Shift + Q` to exit to TTY and run:
+The install adds a **dwm (X11)** session to LightDM. On Arch Linux, install a
+greeter and enable LightDM:
 
 ```bash
-startx
+sudo pacman -S lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm.service
 ```
+
+Set the greeter and default session in `/etc/lightdm/lightdm.conf` under
+`[Seat:*]`:
+
+```ini
+greeter-session=lightdm-gtk-greeter
+user-session=dwm
+```
+
+If another display manager is enabled, disable it before enabling LightDM. Reboot
+and choose **dwm** from the session selector on the login screen. To keep using
+`startx` instead, the included `.xinitrc` forwards to the same dwm session
+startup script.
+
 
 ## Base Hotkeys (modifiable in config.c)
 
@@ -156,12 +166,14 @@ Enjoy 🚀
 🖥 Xorg & Display
 
 * [xorg-server](https://www.x.org/wiki/) - Xorg display server
-* [xorg-xinit](https://www.x.org/wiki/) - Start X sessions
 * [xorg-xprop](https://www.x.org/wiki/) - X window property utility
 * [libx11](https://gitlab.freedesktop.org/xorg/lib/libx11) - X11 client library
 * [libxinerama](https://gitlab.freedesktop.org/xorg/lib/libxinerama) - Multi-monitor support library
 * [libxft](https://gitlab.freedesktop.org/xorg/lib/libxft) - Font rendering library
 * [imlib2](https://docs.enlightenment.org/api/imlib2/html/) - Image loading/rendering library
+* [lightdm](https://github.com/canonical/lightdm) - X11 display manager
+* lightdm-gtk-greeter - Login screen for LightDM
+* `xorg-xinit` - Optional, only needed for the `startx` fallback
 
 💡 Hardware & System Controls
 

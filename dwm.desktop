@@ -1,7 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=dwm
-Comment=Dynamic window manager
-Exec=dwm
+Comment=Dynamic window manager (X11)
+Exec=dwm-session
+TryExec=dwm-session
 Icon=dwm
 Type=XSession
