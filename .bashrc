@@ -5,10 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# clipmenud setup
-export CM_LAUNCHER="rofi"
-export CM_HISTLENGTH=15
-
 # command | coppy
 alias ccopy='xclip -selection clipboard'
 
@@ -25,7 +21,7 @@ alias ..="cd .."
 alias p="pwd"
 
 # Clear clipboard history
-alias cch="rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*"
+alias cch='rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*'
 
 #python virtual enviraments
 alias pv="python -m venv .venv"

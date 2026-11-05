@@ -1,33 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
-export XDG_CURRENT_DESKTOP="dwm:XFCE"
-export XDG_SESSION_DESKTOP=dwm
-export XDG_SESSION_TYPE=x11
-export DESKTOP_SESSION=dwm
-
-if ! systemctl --user import-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE DESKTOP_SESSION; then
-	printf '%s\n' "dwm-session: unable to import the X11 session environment into systemd --user" >&2
-fi
-if ! dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE DESKTOP_SESSION; then
-	printf '%s\n' "dwm-session: unable to update the D-Bus activation environment" >&2
+if [ -x "$HOME/.xinitrc" ]; then
+	exec "$HOME/.xinitrc"
+elif [ -f "$HOME/.xinitrc" ]; then
+	exec /bin/sh "$HOME/.xinitrc"
 fi
 
-xrdb -merge "$HOME/.Xresources"
-export XCURSOR_THEME=Bibata-Modern-Ice
-export XCURSOR_SIZE=24
-
-rm -f "$HOME/.cache/clipmenu"/clipmenu.*."$USER"/*
-export CM_LAUNCHER=rofi
-export CM_HISTLENGTH=15
-export CM_DIR="$HOME/.cache/clipmenu"
-export CM_MAX_CLIPS=100
-
-AUTOSTART="$HOME/.config/dwm/autostart.sh"
-if [ -x "$AUTOSTART" ]; then
-	"$AUTOSTART"
-else
-	printf 'dwm-session: %s is missing or not executable\n' "$AUTOSTART" >&2
-fi
-
-exec dwm
+printf '%s\n' "dwm-session: ~/.xinitrc is missing" >&2
+exit 1

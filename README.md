@@ -29,28 +29,14 @@ cd ~/.local/share/dwm-wattox
 sudo make clean install
 ```
 
-The install adds a **dwm (X11)** session to LightDM. On Arch Linux, install a
-greeter and enable LightDM:
+The Arch setup configures **SDDM (X11)** with the `sddm-astronaut-theme` and
+adds a dwm session entry. SDDM's `dwm-session` launcher enters through
+`~/.xinitrc`, which is also used by `startx`.
 
-```bash
-sudo pacman -S lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm.service
-```
-
-Set the greeter and default session in `/etc/lightdm/lightdm.conf` under
-`[Seat:*]`:
-
-```ini
-greeter-session=lightdm-gtk-greeter
-user-session=dwm
-```
-
-If another display manager is enabled, disable it before enabling LightDM. Reboot
-and choose **dwm** from the session selector on the login screen. To keep using
-`startx` instead, the included `.xinitrc` forwards to the same dwm session
-startup script. That shared launcher starts the session applications from
-`~/.config/dwm/autostart.sh`; `make install` creates this file only if absent,
-so existing startup customizations are preserved. Keep it outside
+The shared `~/.xinitrc` loads X resources, updates the D-Bus activation
+environment, starts session applications from `~/.config/dwm/autostart.sh`, and
+then executes dwm. `make install` creates the autostart file only if absent, so
+existing startup customizations are preserved. Keep it outside
 `~/.config/autostart`, which is reserved for XDG `.desktop` entries.
 
 
@@ -174,8 +160,8 @@ Enjoy 🚀
 * [libxinerama](https://gitlab.freedesktop.org/xorg/lib/libxinerama) - Multi-monitor support library
 * [libxft](https://gitlab.freedesktop.org/xorg/lib/libxft) - Font rendering library
 * [imlib2](https://docs.enlightenment.org/api/imlib2/html/) - Image loading/rendering library
-* [lightdm](https://github.com/canonical/lightdm) - X11 display manager
-* lightdm-gtk-greeter - Login screen for LightDM
+* [sddm](https://github.com/sddm/sddm) - X11 display manager
+* [sddm-astronaut-theme](https://github.com/Keyitdev/sddm-astronaut-theme) - Login theme (installed by the Arch setup)
 * `xorg-xinit` - Optional, only needed for the `startx` fallback
 
 💡 Hardware & System Controls
