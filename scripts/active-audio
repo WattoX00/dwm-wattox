@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -u
+
 # Adjust the volume of the active application's audio stream using PipeWire (wpctl)
 
 # Usage:
@@ -6,13 +8,20 @@
 #   ./active-audio down
 #   ./active-audio mute
 
-STEP=0.05   # volume step (5%)
-ACTION="$1"
+STEP=5%
+ACTION="${1:-}"
 
 if [[ -z "$ACTION" ]]; then
   echo "Usage: $0 {up|down|mute}"
   exit 1
 fi
+
+for command_name in xdotool pw-cli wpctl; do
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    printf 'Missing required command: %s\n' "$command_name" >&2
+    exit 1
+  fi
+done
 
 # Get the active window PID
 ACTIVE_PID=$(xdotool getactivewindow getwindowpid 2>/dev/null)
@@ -23,8 +32,12 @@ fi
 
 # Find the PipeWire client associated with that PID
 CLIENT_ID=$(pw-cli ls Client | awk -v pid="$ACTIVE_PID" '
-  $1 == "id" {id=$3}
-  /application.process.id/ && $3==pid {print id}
+  $1 == "id" {id=$2; sub(/,$/, "", id)}
+  /application.process.id/ {
+    process_id=$3
+    gsub(/"/, "", process_id)
+    if (process_id == pid) print id
+  }
 ')
 
 if [[ -z "$CLIENT_ID" ]]; then
@@ -34,8 +47,12 @@ fi
 
 # Find all stream nodes associated with that client
 NODE_IDS=$(pw-cli ls Node | awk -v cid="$CLIENT_ID" '
-  $1 == "id" {id=$3}
-  /client.id/ && $3==cid {print id}
+  $1 == "id" {id=$2; sub(/,$/, "", id)}
+  /client.id/ {
+    client_id=$3
+    gsub(/"/, "", client_id)
+    if (client_id == cid) print id
+  }
 ')
 
 if [[ -z "$NODE_IDS" ]]; then
@@ -47,13 +64,13 @@ fi
 for NODE in $NODE_IDS; do
   case "$ACTION" in
     up)
-      wpctl set-volume "wp:$NODE" $STEP+ >/dev/null
+      wpctl set-volume "$NODE" "$STEP+" >/dev/null
       ;;
     down)
-      wpctl set-volume "wp:$NODE" $STEP- >/dev/null
+      wpctl set-volume "$NODE" "$STEP-" >/dev/null
       ;;
     mute)
-      wpctl set-mute "wp:$NODE" toggle >/dev/null
+      wpctl set-mute "$NODE" toggle >/dev/null
       ;;
     *)
       echo "Invalid argument: $ACTION (use up, down, or mute)"
@@ -63,4 +80,3 @@ for NODE in $NODE_IDS; do
 done
 
 echo "Adjusted volume for active app (PID $ACTIVE_PID, client $CLIENT_ID, nodes: $NODE_IDS)"
-

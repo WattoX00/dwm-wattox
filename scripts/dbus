@@ -1,1 +1,8 @@
+#!/bin/sh
+
+if ! command -v dbus-update-activation-environment >/dev/null 2>&1; then
+	printf '%s\n' "dwm dbus: dbus-update-activation-environment is unavailable" >&2
+	exit 127
+fi
+
 exec dbus-update-activation-environment --all

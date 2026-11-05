@@ -1,10 +1,49 @@
 #!/bin/bash
+set -u
 
-browser=$(xdg-settings get default-web-browser)
+if [[ $# -lt 1 || -z "$1" ]]; then
+  printf 'Usage: %s URL [browser arguments...]\n' "${0##*/}" >&2
+  exit 2
+fi
 
-case $browser in
-google-chrome* | brave-browser* | microsoft-edge* | opera* | vivaldi*) ;;
-*) browser="chromium.desktop" ;;
+browser=""
+if command -v xdg-settings >/dev/null 2>&1; then
+  browser=$(xdg-settings get default-web-browser 2>/dev/null || true)
+fi
+
+case "$browser" in
+  google-chrome.desktop)
+    if command -v google-chrome >/dev/null 2>&1; then
+      exec google-chrome --app="$1" "${@:2}"
+    fi
+    ;;
+  brave-browser.desktop)
+    if command -v brave-browser >/dev/null 2>&1; then
+      exec brave-browser --app="$1" "${@:2}"
+    fi
+    ;;
+  microsoft-edge.desktop)
+    if command -v microsoft-edge-stable >/dev/null 2>&1; then
+      exec microsoft-edge-stable --app="$1" "${@:2}"
+    fi
+    ;;
+  opera.desktop)
+    if command -v opera >/dev/null 2>&1; then
+      exec opera --app="$1" "${@:2}"
+    fi
+    ;;
+  vivaldi-stable.desktop)
+    if command -v vivaldi >/dev/null 2>&1; then
+      exec vivaldi --app="$1" "${@:2}"
+    fi
+    ;;
 esac
 
-exec $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1) --app="$1" "${@:2}" >/dev/null 2>&1
+if command -v firefox >/dev/null 2>&1; then
+  exec firefox --new-window "$1" "${@:2}"
+fi
+if command -v xdg-open >/dev/null 2>&1; then
+  exec xdg-open "$1" "${@:2}"
+fi
+printf 'No supported browser is available for URL: %s\n' "$1" >&2
+exit 1

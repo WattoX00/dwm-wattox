@@ -36,6 +36,22 @@ dynamic_bindings() {
     in_buttons = 1
     next
   }
+
+  in_keys && /^[ \t]*TAGKEYS\(/ {
+    macro = $0
+    sub(/^[ \t]*TAGKEYS\(/, "", macro)
+    sub(/\).*/, "", macro)
+    split(macro, args, ",")
+    key = args[1]
+    tag = args[2] + 1
+    gsub(/[ \t]/, "", key)
+    gsub(/XK_/, "", key)
+    printf "%s + %s,View tag %d\n", modkey, key, tag
+    printf "%s CTRL + %s,Toggle tag view %d\n", modkey, key, tag
+    printf "%s SHIFT + %s,Tag window to tag %d\n", modkey, key, tag
+    printf "%s CTRL SHIFT + %s,Toggle window tag %d\n", modkey, key, tag
+    next
+  }
   
   # Stop when we reach the end of either array
   /^};/ && (in_keys || in_buttons) { 
@@ -212,4 +228,4 @@ parse_bindings() {
 mapfile -t BINDINGS < <(dynamic_bindings | sort -u | parse_bindings)
 
 # Display with rofi
-CHOICE=$(printf '%s\n' "${BINDINGS[@]}" | rofi -dmenu -i -markup-rows -p "DWM Keybindings:")
+printf '%s\n' "${BINDINGS[@]}" | rofi -dmenu -i -markup-rows -p "DWM Keybindings:"
