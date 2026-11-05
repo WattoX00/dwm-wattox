@@ -27,13 +27,17 @@ Static inspection of this dwm confirms its setup publishes the EWMH supporting
 window before calling `spawnbar()`, so there is no startup-order race in this
 build; the launcher's bounded wait remains a defensive guard. No X server is
 available here, so the visual failure cannot be reproduced and the live
-Polybar `WM_CLASS`/stacking behavior is not verified. The code-level cause is
-that the bar toggle belongs to dwm, not Polybar IPC; the IPC-disabled setting
-was a separate latent issue, not the cause of this key's behavior. The in-scope
-fix keeps Polybar managed and hardens startup/restarts without replacing
-`Super+M` with an IPC-only command. If the bar still fails to hide after
-installing the matching dwm build, verify the live bar class and window state
-on the X session.
+Polybar `WM_CLASS`/stacking behavior is not verified. The static code path
+shows that `Super+M` relies on dwm managing the Polybar window; it does not
+rely on Polybar IPC. Both configured bars are non-override-redirect windows and
+the expected class is `Polybar`, so no source/config mismatch explaining the
+reported symptom was found. Disabled IPC was a separate latent issue, not the
+cause of this key's behavior. The in-scope changes enable IPC and harden
+startup/restarts, but are not claimed as a proven correction for the reported
+runtime failure. On the X session, verify each bar's live `WM_CLASS` and that
+dwm recognizes it as its alternate-bar window; then confirm `Super+M` moves it
+off-screen. If those checks fail, the matching installed dwm build or live
+window properties need investigation.
 
 The custom `fullscreen()` implementation is a monocle-plus-bar toggle rather
 than true EWMH fullscreen. Its saved `last_layout` is global, not per monitor;
