@@ -20,7 +20,7 @@ static const char *altbarcmd                  = "$HOME/.config/polybar/launch.sh
 #define ICONSIZE                              17     /* icon size */
 #define ICONSPACING                           5      /* space between icon and title */
 #define SHOWWINICON                           1      /* 0 means no winicon */
-static const char *fonts[]                    = { "MesloLGS Nerd Font Mono:size=14:antialias=true:autohint=true:hintstyle=hintfull", "Source Han Sans JP:size=14", "Noto Color Emoji:pixelsize=16" };
+static const char *fonts[]                    = { "MesloLGS Nerd Font Mono:size=14:antialias=true:autohint=true:hintstyle=hintfull", "Noto Sans CJK JP:size=14", "Noto Color Emoji:pixelsize=16" };
 static const char normbordercolor[]           = "#3B4252";
 static const char normbgcolor[]               = "#434C5E";  /* Lighter background for better icon contrast */
 static const char normfgcolor[]               = "#D8DEE9";
@@ -86,20 +86,20 @@ static Key keys[] = {
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
     { MODKEY,                       XK_n,                      spawn,          {.v = todomd } },
     { MODKEY,                       XK_a,                      spawn,          {.v = lysnmd } },
-    { MODKEY,                       XK_b,                      spawn,          SHCMD ("xdg-open https://")},
-    { MODKEY,                       XK_p,                      spawn,          SHCMD ("flameshot full -p ~/Pictures/screenshots/")},
-    { MODKEY|ShiftMask,             XK_p,                      spawn,          SHCMD ("flameshot gui -p ~/Pictures/screenshots/")},
+    { MODKEY,                       XK_b,                      spawn,          SHCMD ("firefox")},
+    { MODKEY,                       XK_p,                      spawn,          SHCMD ("mkdir -p \"$HOME/Pictures/screenshots\" && flameshot full -p \"$HOME/Pictures/screenshots/\"")},
+    { MODKEY|ShiftMask,             XK_p,                      spawn,          SHCMD ("mkdir -p \"$HOME/Pictures/screenshots\" && flameshot gui -p \"$HOME/Pictures/screenshots/\"")},
     { MODKEY|ControlMask,           XK_p,                      spawn,          SHCMD ("flameshot gui --clipboard")},
-    { MODKEY,                       XK_e,                      spawn,          SHCMD ("xdg-open .")},
+    { MODKEY,                       XK_e,                      spawn,          SHCMD ("thunar")},
     { MODKEY,                       XK_v,                      spawn,          {.v = (const char*[]){ "clipmenu", NULL } } },
     { MODKEY,                       XK_slash,                  spawn,          SHCMD ("dwm-keybinds")},
     { MODKEY,                       XK_c,                      spawn,          SHCMD ("/usr/bin/rofimoji")},
-    { MODKEY|ShiftMask,             XK_w,                      spawn,          SHCMD ("feh --randomize --bg-fill ~/Pictures/backgrounds/*")},
+    { MODKEY|ShiftMask,             XK_w,                      spawn,          SHCMD ("set -- \"$HOME/Pictures/backgrounds/\"*; [ -f \"$1\" ] && feh --randomize --bg-fill \"$@\"")},
     { 0,                            XF86XK_MonBrightnessUp,    spawn,          SHCMD ("brightnessctl set +10%")},
     { 0,                            XF86XK_MonBrightnessDown,  spawn,          SHCMD ("brightnessctl set 10%-")},
-    { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD ("amixer sset Master 5%- unmute")},
-    { 0,                            XF86XK_AudioMute,          spawn,          SHCMD ("amixer sset Master $(amixer get Master | grep -q '\\[on\\]' && echo 'mute' || echo 'unmute')")},
-    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD ("amixer sset Master 5%+ unmute")},
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD ("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%- && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")},
+    { 0,                            XF86XK_AudioMute,          spawn,          SHCMD ("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")},
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD ("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0")},
     { MODKEY|ShiftMask,             XK_b,                      togglebar,      {0} },
     { MODKEY,                       XK_j,                      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,                      focusstack,     {.i = -1 } },

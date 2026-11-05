@@ -10,8 +10,6 @@ bindings = [
   { key = "Insert", mods = "Shift", action = "Paste" },
 
   # Scrolling
-  { key = "Up", mods = "Control|Shift", action = "ScrollLineUp" },
-  { key = "Down", mods = "Control|Shift", action = "ScrollLineDown" },
   { key = "K", mods = "Control|Shift", action = "ScrollLineUp" },
   { key = "J", mods = "Control|Shift", action = "ScrollLineDown" },
   { key = "PageUp", mods = "Control|Shift", action = "ScrollPageUp" },
