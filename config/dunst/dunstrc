@@ -34,7 +34,7 @@
     gap_size = 6
 
     sort = yes
-    font = "Sora Medium 10"
+    font = "MesloLGS Nerd Font Mono 10"
     line_height = 1
     markup = full
     format = "<b>%s</b>\n%b"
@@ -50,11 +50,11 @@
     enable_recursive_icon_lookup = true
     icon_theme = Adwaita
     icon_position = left
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
     sticky_history = yes
     history_length = 20
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
     browser = /usr/bin/xdg-open
     always_run_script = true
 

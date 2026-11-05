@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+set -u
 
 ## Author : Aditya Shakya (adi1090x)
 ## Github : @adi1090x
 
 # CMDs
-uptime="`uptime -p | sed -e 's/up //g'`"
+uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
 shutdown='󰐥'
@@ -36,12 +37,14 @@ run_cmd() {
 			systemctl reboot
 			;;
 		--suspend)
-			mpc -q pause
-			amixer set Master mute
+			if command -v playerctl >/dev/null 2>&1; then
+				playerctl --all-players pause
+			fi
+			wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
 			systemctl suspend
 			;;
 		--logout)
-			case "$DESKTOP_SESSION" in
+			case "${DESKTOP_SESSION:-}" in
 				openbox)
 					openbox --exit
 					;;
@@ -72,10 +75,13 @@ case "${chosen}" in
 		run_cmd --reboot
         ;;
     "${lock}")
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
+		if command -v betterlockscreen >/dev/null 2>&1; then
 			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
+		elif command -v i3lock >/dev/null 2>&1; then
 			i3lock
+		else
+			printf '%s\n' "No screen locker is installed; install i3lock to enable locking." >&2
+			rofi -e "No screen locker is installed. Install i3lock to enable locking."
 		fi
         ;;
     "${suspend}")

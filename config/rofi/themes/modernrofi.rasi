@@ -8,7 +8,7 @@
     urgent:        #BF616A;
 
     spacing: 8px;
-    font: "Sora Medium 14";
+    font: "MesloLGS Nerd Font Mono 14";
 }
 
 window {
