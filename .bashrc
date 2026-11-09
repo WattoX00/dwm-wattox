@@ -34,6 +34,23 @@ alias la="eza -lha --icons"
 
 alias rld='clear && fastfetch'
 
+# bf for Bash File creation
+# usage: bf filename
+
+bf() {
+  [[ "$1" != *.sh ]] && set -- "$1.sh"
+
+  if [[ -e "$1" ]]; then
+    echo "File already exists: $1"
+    return 1
+  fi
+
+  echo "#!/bin/bash" >"$1"
+  chmod +x "$1"
+
+  echo "Created: $(realpath "$1")"
+}
+
 PS1='[\u@\h \W]\$ '
 
 # Run fastfetch on shell initialization
