@@ -76,8 +76,17 @@ static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
 static const char *todomd[]    = { "alacritty", "-e", "todol", NULL };
-static const char *chatgpt[] = { "chromium", "--app=https://chatgpt.com", NULL };
-static const char *maps[]    = { "chromium", "--app=https://www.google.com/maps", NULL };
+static const char *chatgpt[] = {
+    "/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch",
+    "https://chatgpt.com",
+    NULL
+};
+
+static const char *maps[] = {
+    "/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch",
+    "https://www.google.com/maps",
+    NULL
+};
 
 static Key keys[] = {
     /* modifier                     key                        function        argument */

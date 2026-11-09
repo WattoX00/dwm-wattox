@@ -11,7 +11,7 @@ create_webapp() {
     local name="${1:-}"
     local url="${2:-}"
     local icon_url="${3:-}"
-    local browser="${4:-webapp-launch}"
+    local browser="${4:-/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch}"
     
     if [[ -z "$name" || -z "$url" ]]; then
         echo "Usage: webapp-create create 'App Name' 'https://url.com' [icon_url] [browser-command]"
