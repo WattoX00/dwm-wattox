@@ -76,7 +76,8 @@ static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
 static const char *todomd[]    = { "alacritty", "-e", "todol", NULL };
-static const char *lysnmd[]    = { "alacritty", "-e", "lysn", NULL };
+static const char *chatgpt[] = { "chromium", "--app=https://chatgpt.com", NULL };
+static const char *maps[]    = { "chromium", "--app=https://www.google.com/maps", NULL };
 
 static Key keys[] = {
     /* modifier                     key                        function        argument */
@@ -85,7 +86,8 @@ static Key keys[] = {
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
     { MODKEY,                       XK_n,                      spawn,          {.v = todomd } },
-    { MODKEY,                       XK_a,                      spawn,          {.v = lysnmd } },
+    { MODKEY,                       XK_a,                      spawn,          {.v = chatgpt} },
+    { MODKEY|ShiftMask,             XK_s,                      spawn,          {.v = maps} },
     { MODKEY,                       XK_b,                      spawn,          SHCMD ("firefox")},
     { MODKEY,                       XK_p,                      spawn,          SHCMD ("mkdir -p \"$HOME/Pictures/screenshots\" && flameshot full -p \"$HOME/Pictures/screenshots/\"")},
     { MODKEY|ShiftMask,             XK_p,                      spawn,          SHCMD ("mkdir -p \"$HOME/Pictures/screenshots\" && flameshot gui -p \"$HOME/Pictures/screenshots/\"")},
