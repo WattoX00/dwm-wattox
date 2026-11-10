@@ -39,6 +39,14 @@ then executes dwm. `make install` creates the autostart file only if absent, so
 existing startup customizations are preserved. Keep it outside
 `~/.config/autostart`, which is reserved for XDG `.desktop` entries.
 
+`make install` also installs the Polybar runtime files under
+`~/.local/share/dwm-wattox/polybar`, its launcher under `~/.config/polybar`,
+the helper commands in `${PREFIX}/bin`, and the `lid-inhibit.service` user unit
+under `${PREFIX}/lib/systemd/user`. After installing the unit, reload the user
+systemd manager with `systemctl --user daemon-reload`. The laptop bar's lid
+indicator toggles lid inhibition on left-click; the nightshift indicator
+cycles through automatic, night, and off modes.
+
 
 ## Base Hotkeys (modifiable in config.h)
 
@@ -104,6 +112,8 @@ Enjoy 🚀
 * [picom](https://github.com/yshui/picom) - Compositor (transparency, animations)
 * [polybar](https://github.com/polybar/polybar) - Status bar
 * [redshift](https://wiki.archlinux.org/title/Redshift) - Screen color temperature adjustment
+* `systemd` - User systemd manager and `systemd-inhibit` for lid inhibition
+* `procps-ng` (`pkill`) and `util-linux` (`setsid`) - Used by the nightshift helper
 
 🖥 Terminal & Shell Workflow
 

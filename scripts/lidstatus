@@ -1,7 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if [[ "$(lidmode status)" == "ON" ]]; then
-    echo "󰌿 LID ON"
-else
-    echo "󰌾 LID OFF"
+if ! mode=$(lidmode status); then
+    echo "lidstatus: unable to determine lid mode" >&2
+    exit 1
 fi
+
+case "$mode" in
+    ON)  echo "󰌿 LID ON" ;;
+    OFF) echo "󰌾 LID OFF" ;;
+    *)
+        echo "lidstatus: unexpected status: $mode" >&2
+        exit 1
+        ;;
+esac

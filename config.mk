@@ -7,6 +7,7 @@ VERSION = 0.4
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 XSESSIONSDIR = /usr/share/xsessions
+SYSTEMDUSERDIR = ${PREFIX}/lib/systemd/user
 
 X11INC = /usr/include
 X11LIB = /usr/lib

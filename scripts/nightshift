@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
+STATE_FILE="$STATE_DIR/nightshift"
+
+AUTO_CMD=(
+    redshift
+    -m randr
+    -l 0.0:0.0
+    -t 5500:3000
+    -r
+)
+
+get_mode() {
+    if [[ -r "$STATE_FILE" ]]; then
+        cat "$STATE_FILE"
+    else
+        echo "auto"
+    fi
+}
+
+set_mode() {
+    local mode="$1"
+
+    case "$mode" in
+        auto|night|off) ;;
+        *)
+            echo "Unknown mode: $mode" >&2
+            return 1
+            ;;
+    esac
+
+    if ! command -v redshift >/dev/null 2>&1; then
+        echo "nightshift: redshift is not installed or not on PATH" >&2
+        return 1
+    fi
+    if ! command -v pkill >/dev/null 2>&1; then
+        echo "nightshift: pkill is not installed or not on PATH" >&2
+        return 1
+    fi
+    if [[ "$mode" == auto ]] && ! command -v setsid >/dev/null 2>&1; then
+        echo "nightshift: setsid is not installed or not on PATH" >&2
+        return 1
+    fi
+
+    if pkill -x redshift 2>/dev/null; then
+        :
+    else
+        local pkill_status=$?
+        if [[ "$pkill_status" -ne 1 ]]; then
+            echo "nightshift: failed to stop an existing redshift process" >&2
+            return "$pkill_status"
+        fi
+    fi
+
+    case "$mode" in
+        auto)
+            setsid -f "${AUTO_CMD[@]}" </dev/null >/dev/null 2>&1
+            ;;
+        night)
+            redshift -P -O 3000
+            ;;
+        off)
+            redshift -P -O 6500
+            ;;
+    esac || return $?
+
+    mkdir -p "$STATE_DIR" || return $?
+    printf '%s\n' "$mode" > "$STATE_FILE"
+}
+
+case "${1:-toggle}" in
+    auto|night|off)
+        set_mode "$1"
+        ;;
+    toggle)
+        case "$(get_mode)" in
+            auto)  set_mode night ;;
+            night) set_mode off ;;
+            off)   set_mode auto ;;
+            *)     set_mode auto ;;
+        esac
+        ;;
+    status)
+        get_mode
+        ;;
+    *)
+        echo "Usage: nightshift {auto|night|off|toggle|status}" >&2
+        exit 1
+        ;;
+esac

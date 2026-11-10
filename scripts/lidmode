@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+SERVICE="lid-inhibit.service"
+
+status() {
+    local load_state
+
+    if ! load_state=$(systemctl --user show --property=LoadState --value "$SERVICE"); then
+        echo "lidmode: unable to query the user systemd manager" >&2
+        return 1
+    fi
+    if [[ "$load_state" != loaded ]]; then
+        echo "lidmode: $SERVICE is not loaded; reload the user systemd manager" >&2
+        return 1
+    fi
+
+    if systemctl --user is-active --quiet "$SERVICE"; then
+        echo "ON"
+    else
+        echo "OFF"
+    fi
+}
+
+case "${1:-toggle}" in
+    on)
+        systemctl --user start "$SERVICE"
+        ;;
+    off)
+        systemctl --user stop "$SERVICE"
+        ;;
+    toggle)
+        if systemctl --user is-active --quiet "$SERVICE"; then
+            systemctl --user stop "$SERVICE"
+        else
+            systemctl --user start "$SERVICE"
+        fi
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo "Usage: lidmode {on|off|toggle|status}" >&2
+        exit 1
+        ;;
+esac

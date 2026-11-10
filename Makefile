@@ -3,6 +3,8 @@
 
 include config.mk
 
+USER_HOME ?= $(if $(SUDO_USER),$(shell getent passwd "$(SUDO_USER)" | cut -d: -f6),$(HOME))
+
 SRC = drw.c dwm.c util.c
 OBJ = ${SRC:.c=.o}
 
@@ -29,22 +31,28 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	test -f /home/${SUDO_USER}/.xinitrc || install -Dm644 .xinitrc /home/${SUDO_USER}/.xinitrc
-	test -f /home/${SUDO_USER}/.Xresources || install -Dm644 .Xresources /home/${SUDO_USER}/.Xresources
-	test -e /home/${SUDO_USER}/.config/dwm/autostart.sh || install -Dm755 config/autostart/autostart.sh /home/${SUDO_USER}/.config/dwm/autostart.sh
-	install -Dm644 .bashrc /home/${SUDO_USER}/.bashrc
-	mkdir -p /home/${SUDO_USER}/.config/polybar
-	cp -rf polybar/* /home/${SUDO_USER}/.config/polybar/
-	chmod +x /home/${SUDO_USER}/.config/polybar/launch.sh
-	chmod +x /home/${SUDO_USER}/.config/polybar/scripts/dwm-tags.sh
+	test -f "$(USER_HOME)/.xinitrc" || install -Dm644 .xinitrc "$(USER_HOME)/.xinitrc"
+	test -f "$(USER_HOME)/.Xresources" || install -Dm644 .Xresources "$(USER_HOME)/.Xresources"
+	test -e "$(USER_HOME)/.config/dwm/autostart.sh" || install -Dm755 config/autostart/autostart.sh "$(USER_HOME)/.config/dwm/autostart.sh"
+	install -Dm644 .bashrc "$(USER_HOME)/.bashrc"
+	install -d "$(USER_HOME)/.local/share/dwm-wattox/polybar"
+	cp -rf polybar/. "$(USER_HOME)/.local/share/dwm-wattox/polybar/"
+	chmod +x "$(USER_HOME)/.local/share/dwm-wattox/polybar/scripts/dwm-tags.sh"
+	install -Dm755 polybar/launch.sh "$(USER_HOME)/.config/polybar/launch.sh"
+	install -Dm644 config/systemd/user/lid-inhibit.service "${DESTDIR}${SYSTEMDUSERDIR}/lid-inhibit.service"
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	install -Dm755 scripts/* ${DESTDIR}${PREFIX}/bin/
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm \
 		${DESTDIR}${PREFIX}/bin/dwm-session \
+		${DESTDIR}${PREFIX}/bin/lidmode \
+		${DESTDIR}${PREFIX}/bin/lidstatus \
+		${DESTDIR}${PREFIX}/bin/nightshift \
+		${DESTDIR}${PREFIX}/bin/nightstatus \
 		${DESTDIR}${XSESSIONSDIR}/dwm.desktop \
 		${DESTDIR}${MANPREFIX}/man1/dwm.1 \
+		${DESTDIR}${SYSTEMDUSERDIR}/lid-inhibit.service
 
 release: dwm
 	mkdir -p release

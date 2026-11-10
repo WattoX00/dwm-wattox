@@ -1,7 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-case "$(nightshift status)" in
+if ! mode=$(nightshift status); then
+    echo "nightstatus: unable to determine nightshift mode" >&2
+    exit 1
+fi
+
+case "$mode" in
     auto)  echo "󰖔 AUTO" ;;
     night) echo "󰖙 NIGHT" ;;
     off)   echo "󰖨 OFF" ;;
+    *)
+        echo "nightstatus: unexpected mode: $mode" >&2
+        exit 1
+        ;;
 esac
