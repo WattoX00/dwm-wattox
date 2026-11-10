@@ -31,15 +31,26 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+
 	test -f "$(USER_HOME)/.xinitrc" || install -Dm644 .xinitrc "$(USER_HOME)/.xinitrc"
 	test -f "$(USER_HOME)/.Xresources" || install -Dm644 .Xresources "$(USER_HOME)/.Xresources"
 	test -e "$(USER_HOME)/.config/dwm/autostart.sh" || install -Dm755 config/autostart/autostart.sh "$(USER_HOME)/.config/dwm/autostart.sh"
 	install -Dm644 .bashrc "$(USER_HOME)/.bashrc"
+
 	install -d "$(USER_HOME)/.local/share/dwm-wattox/polybar"
-	cp -rf polybar/. "$(USER_HOME)/.local/share/dwm-wattox/polybar/"
-	chmod +x "$(USER_HOME)/.local/share/dwm-wattox/polybar/scripts/dwm-tags.sh"
+
+	if [ "$$(realpath polybar)" != "$$(realpath "$(USER_HOME)/.local/share/dwm-wattox/polybar")" ]; then \
+		cp -rf polybar/. "$(USER_HOME)/.local/share/dwm-wattox/polybar/"; \
+	fi
+
 	install -Dm755 polybar/launch.sh "$(USER_HOME)/.config/polybar/launch.sh"
+
+	if [ -d "$(USER_HOME)/.local/share/dwm-wattox/polybar/scripts" ]; then \
+		chmod +x "$(USER_HOME)/.local/share/dwm-wattox/polybar/scripts/"*; \
+	fi
+
 	install -Dm644 config/systemd/user/lid-inhibit.service "${DESTDIR}${SYSTEMDUSERDIR}/lid-inhibit.service"
+
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	install -Dm755 scripts/* ${DESTDIR}${PREFIX}/bin/
 
@@ -52,7 +63,8 @@ uninstall:
 		${DESTDIR}${PREFIX}/bin/nightstatus \
 		${DESTDIR}${XSESSIONSDIR}/dwm.desktop \
 		${DESTDIR}${MANPREFIX}/man1/dwm.1 \
-		${DESTDIR}${SYSTEMDUSERDIR}/lid-inhibit.service
+		${DESTDIR}${SYSTEMDUSERDIR}/lid-inhibit.service \
+		"$(USER_HOME)/.config/polybar/launch.sh"
 
 release: dwm
 	mkdir -p release
