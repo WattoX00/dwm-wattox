@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case "$(nightshift status)" in
+    auto)  echo "󰖔 AUTO" ;;
+    night) echo "󰖙 NIGHT" ;;
+    off)   echo "󰖨 OFF" ;;
+esac

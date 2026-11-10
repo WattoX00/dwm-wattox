@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$(lidmode status)" == "ON" ]]; then
+    echo "󰌿 LID ON"
+else
+    echo "󰌾 LID OFF"
+fi
