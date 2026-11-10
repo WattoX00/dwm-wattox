@@ -1,0 +1,12 @@
+[Unit]
+Description=Prevent laptop sleep and lid-close suspend
+
+[Service]
+ExecStart=/usr/bin/systemd-inhibit \
+    --what=sleep:idle:handle-lid-switch \
+    --who=dwm \
+    --why="Laptop idle mode enabled" \
+    --mode=block \
+    /usr/bin/sleep infinity
+
+Restart=no
