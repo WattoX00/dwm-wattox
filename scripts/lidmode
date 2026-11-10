@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+SERVICE="lid-inhibit.service"
+
+case "${1:-toggle}" in
+    on)
+        systemctl --user start "$SERVICE"
+        ;;
+    off)
+        systemctl --user stop "$SERVICE"
+        ;;
+    toggle)
+        if systemctl --user is-active --quiet "$SERVICE"; then
+            systemctl --user stop "$SERVICE"
+        else
+            systemctl --user start "$SERVICE"
+        fi
+        ;;
+    status)
+        if systemctl --user is-active --quiet "$SERVICE"; then
+            echo "ON"
+        else
+            echo "OFF"
+        fi
+        ;;
+    *)
+        echo "Usage: lidmode {on|off|toggle|status}"
+        exit 1
+        ;;
+esac
