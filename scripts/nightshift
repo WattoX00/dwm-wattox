@@ -10,7 +10,7 @@ if [[ -r "$LOCATION_FILE" ]]; then
     LOCATION="$(cat "$LOCATION_FILE")"
 fi
 
-AUTO_CMD=(
+ON_CMD=(
     redshift
     -m randr
     -l "$LOCATION"
@@ -20,9 +20,13 @@ AUTO_CMD=(
 
 get_mode() {
     if [[ -r "$STATE_FILE" ]]; then
-        cat "$STATE_FILE"
+        case "$(cat "$STATE_FILE")" in
+            auto|night|on) echo "on" ;;
+            off) echo "off" ;;
+            *) echo "off" ;;
+        esac
     else
-        echo "auto"
+        echo "off"
     fi
 }
 
@@ -30,7 +34,7 @@ set_mode() {
     local mode="$1"
 
     case "$mode" in
-        auto|night|off) ;;
+        on|off) ;;
         *)
             echo "Unknown mode: $mode" >&2
             return 1
@@ -45,7 +49,7 @@ set_mode() {
         echo "nightshift: pkill is not installed or not on PATH" >&2
         return 1
     fi
-    if [[ "$mode" == auto ]] && ! command -v setsid >/dev/null 2>&1; then
+    if [[ "$mode" == on ]] && ! command -v setsid >/dev/null 2>&1; then
         echo "nightshift: setsid is not installed or not on PATH" >&2
         return 1
     fi
@@ -61,11 +65,8 @@ set_mode() {
     fi
 
     case "$mode" in
-        auto)
-            setsid -f "${AUTO_CMD[@]}" </dev/null >/dev/null 2>&1
-            ;;
-        night)
-            redshift -P -O 3000
+        on)
+            setsid -f "${ON_CMD[@]}" </dev/null >/dev/null 2>&1
             ;;
         off)
             redshift -P -O 6500
@@ -77,22 +78,21 @@ set_mode() {
 }
 
 case "${1:-toggle}" in
-    auto|night|off)
+    on|off)
         set_mode "$1"
         ;;
     toggle)
         case "$(get_mode)" in
-            auto)  set_mode night ;;
-            night) set_mode off ;;
-            off)   set_mode auto ;;
-            *)     set_mode auto ;;
+            on)  set_mode off ;;
+            off) set_mode on ;;
+            *)   set_mode on ;;
         esac
         ;;
     status)
         get_mode
         ;;
     *)
-        echo "Usage: nightshift {auto|night|off|toggle|status}" >&2
+        echo "Usage: nightshift {on|off|toggle|status}" >&2
         exit 1
         ;;
 esac
