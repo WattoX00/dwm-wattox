@@ -6,9 +6,8 @@ if ! mode=$(nightshift status); then
 fi
 
 case "$mode" in
-    auto)  echo "󰖔 AUTO" ;;
-    night) echo "󰖙 NIGHT" ;;
-    off)   echo "󰖨 OFF" ;;
+    on)  echo "󰖙 ON" ;;
+    off) echo "󰖨 OFF" ;;
     *)
         echo "nightstatus: unexpected mode: $mode" >&2
         exit 1
