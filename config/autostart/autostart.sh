@@ -43,7 +43,7 @@ fi
 
 start_once '(^|/)clipmenud([[:space:]]|$)' clipmenud
 start_once '(^|/)nm-applet([[:space:]]|$)' nm-applet
-nightshift auto
+nightshift on
 start_once '(^|/)flameshot([[:space:]]|$)' flameshot
 
 # Polybar is started by dwm through altbarcmd, after the window manager is ready.
