@@ -2,97 +2,97 @@
 
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
 STATE_FILE="$STATE_DIR/nightshift"
-
 LOCATION_FILE="$HOME/.config/nightshift/location"
-LOCATION="0.0:0.0"
 
-if [[ -r "$LOCATION_FILE" ]]; then
-    LOCATION="$(cat "$LOCATION_FILE")"
-fi
-
-ON_CMD=(
-    redshift
-    -m randr
-    -l "$LOCATION"
-    -t 5500:3000
-    -r
-)
+LOCATION=""
 
 get_mode() {
-    if [[ -r "$STATE_FILE" ]]; then
-        case "$(cat "$STATE_FILE")" in
-            auto|night|on) echo "on" ;;
-            off) echo "off" ;;
-            *) echo "off" ;;
-        esac
-    else
-        echo "off"
-    fi
+  if [[ -r "$STATE_FILE" ]]; then
+    cat "$STATE_FILE"
+  else
+    echo "off"
+  fi
+}
+
+stop_redshift() {
+  pkill -x redshift 2>/dev/null || true
 }
 
 set_mode() {
-    local mode="$1"
+  local mode="$1"
 
-    case "$mode" in
-        on|off) ;;
-        *)
-            echo "Unknown mode: $mode" >&2
-            return 1
-            ;;
-    esac
+  if ! command -v redshift >/dev/null 2>&1; then
+    echo "nightshift: redshift not installed" >&2
+    return 1
+  fi
 
-    if ! command -v redshift >/dev/null 2>&1; then
-        echo "nightshift: redshift is not installed or not on PATH" >&2
-        return 1
-    fi
-    if ! command -v pkill >/dev/null 2>&1; then
-        echo "nightshift: pkill is not installed or not on PATH" >&2
-        return 1
-    fi
-    if [[ "$mode" == on ]] && ! command -v setsid >/dev/null 2>&1; then
-        echo "nightshift: setsid is not installed or not on PATH" >&2
-        return 1
+  mkdir -p "$STATE_DIR" || return 1
+
+  case "$mode" in
+  auto)
+    if [[ ! -r "$LOCATION_FILE" ]]; then
+      echo "nightshift: location file missing" >&2
+      return 1
     fi
 
-    if pkill -x redshift 2>/dev/null; then
-        :
-    else
-        local pkill_status=$?
-        if [[ "$pkill_status" -ne 1 ]]; then
-            echo "nightshift: failed to stop an existing redshift process" >&2
-            return "$pkill_status"
-        fi
+    LOCATION="$(tr -d '[:space:]' <"$LOCATION_FILE")"
+
+    if [[ ! "$LOCATION" =~ ^-?[0-9]+([.][0-9]+)?:-?[0-9]+([.][0-9]+)?$ ]]; then
+      echo "nightshift: invalid location: $LOCATION" >&2
+      return 1
     fi
 
-    case "$mode" in
-        on)
-            setsid -f "${ON_CMD[@]}" </dev/null >/dev/null 2>&1
-            ;;
-        off)
-            redshift -P -O 6500
-            ;;
-    esac || return $?
+    stop_redshift
 
-    mkdir -p "$STATE_DIR" || return $?
-    printf '%s\n' "$mode" > "$STATE_FILE"
+    setsid -f redshift \
+      -m randr \
+      -l "$LOCATION" \
+      -t 5500:3000 \
+      </dev/null >/dev/null 2>&1
+
+    ;;
+
+  night)
+    stop_redshift
+    redshift -O 3000 || return 1
+    ;;
+
+  off)
+    stop_redshift
+    redshift -x || return 1
+    ;;
+
+  *)
+    echo "Unknown mode: $mode" >&2
+    return 1
+    ;;
+  esac
+
+  printf '%s\n' "$mode" >"$STATE_FILE"
 }
 
 case "${1:-toggle}" in
-    on|off)
-        set_mode "$1"
-        ;;
-    toggle)
-        case "$(get_mode)" in
-            on)  set_mode off ;;
-            off) set_mode on ;;
-            *)   set_mode on ;;
-        esac
-        ;;
-    status)
-        get_mode
-        ;;
-    *)
-        echo "Usage: nightshift {on|off|toggle|status}" >&2
-        exit 1
-        ;;
+auto | night | off)
+  set_mode "$1"
+  ;;
+
+on)
+  set_mode night
+  ;;
+
+toggle)
+  case "$(get_mode)" in
+  off) set_mode night ;;
+  *) set_mode off ;;
+  esac
+  ;;
+
+status)
+  get_mode
+  ;;
+
+*)
+  echo "Usage: nightshift {auto|night|on|off|toggle|status}" >&2
+  exit 1
+  ;;
 esac
