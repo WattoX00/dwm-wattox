@@ -75,7 +75,6 @@ static const Layout layouts[] = {
 static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
-static const char *todomd[]    = { "alacritty", "-e", "todol", NULL };
 static const char *chatgpt[] = {
     "/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch",
     "https://chatgpt.com",
@@ -94,7 +93,6 @@ static Key keys[] = {
     { MODKEY|ControlMask,           XK_r,                      spawn,          SHCMD ("protonrestart")},
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
-    { MODKEY,                       XK_n,                      spawn,          {.v = todomd } },
     { MODKEY,                       XK_a,                      spawn,          {.v = chatgpt} },
     { MODKEY|ShiftMask,             XK_s,                      spawn,          {.v = maps} },
     { MODKEY,                       XK_b,                      spawn,          SHCMD ("firefox")},
