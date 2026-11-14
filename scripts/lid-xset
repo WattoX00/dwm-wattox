@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+STATE="${XDG_RUNTIME_DIR:-/tmp}/lid-xset.state"
+
+save() {
+  # Keep the first snapshot if a stale one exists (e.g. after a crash)
+  [[ -f "$STATE" ]] && return 0
+  local q; q=$(xset q) || return 1
+  {
+    echo "TIMEOUT=$(awk '/timeout:/ {print $2}' <<<"$q")"
+    echo "CYCLE=$(awk '/timeout:/ {print $4}' <<<"$q")"
+    echo "BLANK=$(awk '/prefer blanking:/ {print $3}' <<<"$q")"
+    echo "STANDBY=$(awk '/Standby:/ {print $2}' <<<"$q")"
+    echo "SUSPEND=$(awk '/Standby:/ {print $4}' <<<"$q")"
+    echo "OFF=$(awk '/Standby:/ {print $6}' <<<"$q")"
+    echo "DPMS=$(awk '/DPMS is/ {print $3}' <<<"$q")"
+  } > "$STATE"
+}
+
+disable() {
+  xset s off
+  xset s noblank
+  xset -dpms
+}
+
+restore() {
+  if [[ -f "$STATE" ]]; then
+    # shellcheck disable=SC1090
+    source "$STATE"
+    xset s "$TIMEOUT" "$CYCLE"
+    [[ "$BLANK" == "yes" ]] && xset s blank || xset s noblank
+    xset dpms "$STANDBY" "$SUSPEND" "$OFF"
+    [[ "$DPMS" == "Enabled" ]] && xset +dpms || xset -dpms
+    rm -f "$STATE"
+  else
+    xset s default
+    xset +dpms
+  fi
+}
+
+case "$1" in
+  on)  save && disable ;;
+  off) restore ;;
+  *)   echo "Usage: lid-xset {on|off}" >&2; exit 1 ;;
+esac
