@@ -90,7 +90,6 @@ static const char *maps[] = {
 static Key keys[] = {
     /* modifier                     key                        function        argument */
     { MODKEY,                       XK_r,                      spawn,          {.v = launchercmd} },
-    { MODKEY|ControlMask,           XK_r,                      spawn,          SHCMD ("protonrestart")},
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
     { MODKEY,                       XK_a,                      spawn,          {.v = chatgpt} },
