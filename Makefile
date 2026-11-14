@@ -57,6 +57,7 @@ install: all
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm \
 		${DESTDIR}${PREFIX}/bin/dwm-session \
+		${DESTDIR}${PREFIX}/bin/lid-xset \
 		${DESTDIR}${PREFIX}/bin/lidmode \
 		${DESTDIR}${PREFIX}/bin/lidstatus \
 		${DESTDIR}${PREFIX}/bin/nightshift \
