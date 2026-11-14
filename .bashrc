@@ -8,6 +8,9 @@
 # command | coppy
 alias ccopy='xclip -selection clipboard'
 
+# User enviraments to run lazyvim as root
+alias snvim='sudo -E nvim'
+
 # git aliases
 alias gs='git status'
 alias ga='git add .'
@@ -28,9 +31,9 @@ alias pv="python -m venv .venv"
 alias sv="source .venv/bin/activate"
 
 # eza for l commands
-alias ls="eza --icons"
-alias ll="eza -lh --icons"
-alias la="eza -lha --icons"
+alias ls='eza --icons=auto'
+alias ll="eza -lh --icons=auto"
+alias la="eza -lha --icons=auto"
 
 alias rld='clear && fastfetch'
 
@@ -55,5 +58,4 @@ PS1='[\u@\h \W]\$ '
 
 # Run fastfetch on shell initialization
 fastfetch
-
 eval "$(starship init bash)"
