@@ -76,14 +76,14 @@ static const char *launchercmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *editormd[]  = { "alacritty", "-e", "nvim", ".", NULL };
 static const char *chatgpt[] = {
-    "/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch",
-    "https://chatgpt.com",
+    "sh", "-c",
+    "$HOME/.local/share/dwm-wattox/scripts/webapp-launch https://chatgpt.com",
     NULL
 };
 
 static const char *maps[] = {
-    "/home/wattox/.local/share/dwm-wattox/scripts/webapp-launch",
-    "https://www.google.com/maps",
+    "sh", "-c",
+    "$HOME/.local/share/dwm-wattox/scripts/webapp-launch https://www.google.com/maps",
     NULL
 };
 
