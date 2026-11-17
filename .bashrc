@@ -17,6 +17,15 @@ alias ga='git add .'
 alias gc='git commit -m'
 alias gp='git push'
 
+# git history
+alias gl='git --no-pager log --oneline'
+
+# local commits not pushed
+alias gll='git --no-pager log --oneline @{u}..HEAD'
+
+# local commits + all diffs
+alias glld='git --no-pager log -p @{u}..HEAD'
+
 # j insted of cd
 eval "$(zoxide init bash --cmd j)"
 alias cd="j"
@@ -58,4 +67,5 @@ PS1='[\u@\h \W]\$ '
 
 # Run fastfetch on shell initialization
 fastfetch
+
 eval "$(starship init bash)"
