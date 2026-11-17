@@ -89,8 +89,7 @@ static const char *maps[] = {
 
 static const char *discord[] = {
     "sh", "-c",
-    "$HOME/.local/share/dwm-wattox/scripts/webapp-launch https://discord.com/channels/@me
-",
+    "$HOME/.local/share/dwm-wattox/scripts/webapp-launch https://discord.com/channels/@me",
     NULL
 };
 
