@@ -87,12 +87,20 @@ static const char *maps[] = {
     NULL
 };
 
+static const char *discord[] = {
+    "sh", "-c",
+    "$HOME/.local/share/dwm-wattox/scripts/webapp-launch https://discord.com/channels/@me
+",
+    NULL
+};
+
 static Key keys[] = {
     /* modifier                     key                        function        argument */
     { MODKEY,                       XK_r,                      spawn,          {.v = launchercmd} },
     { MODKEY,                       XK_x,                      spawn,          {.v = termcmd } },
     { MODKEY,                       XK_u,                      spawn,          {.v = editormd } },
     { MODKEY,                       XK_a,                      spawn,          {.v = chatgpt} },
+    { MODKEY,                       XK_n,                      spawn,          {.v = discord} },
     { MODKEY|ShiftMask,             XK_s,                      spawn,          {.v = maps} },
     { MODKEY,                       XK_b,                      spawn,          SHCMD ("firefox")},
     { MODKEY,                       XK_p,                      spawn,          SHCMD ("mkdir -p \"$HOME/Pictures/screenshots\" && flameshot full -p \"$HOME/Pictures/screenshots/\"")},
